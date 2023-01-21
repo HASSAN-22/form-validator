@@ -4,7 +4,8 @@
     "keywords": [
         "hasan",
         "laravel",
-        "validation"
+        "validation",
+        "form validation"
     ],
     "homepage": "https://github.com/HASSAN-22/form-validator",
     "license": "MIT",
