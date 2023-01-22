@@ -2,8 +2,9 @@
 
 namespace Validation;
 
-class Required implements ValidationInterface
+class Between implements ValidationInterface
 {
+
     private array $formData;
 
     private array $errorMessage;
@@ -13,7 +14,9 @@ class Required implements ValidationInterface
     private string $additional;
 
     public function validate(){
-        if(empty($this->formData[$this->field])){
+        $values = explode(',',$this->additional);
+        $data = $this->formData[$this->field];
+        if(!($values[0] <= $data and $values[1] >= $data)){
             return $this->errorMessage;
         }
     }
@@ -23,7 +26,7 @@ class Required implements ValidationInterface
     }
 
     public function message(string $errorMessage){
-        $this->errorMessage = [$this->field => empty($errorMessage) ? "Field `{$this->field}` is required" : $errorMessage];
+        $this->errorMessage = [$this->field => empty($errorMessage) ? "The field `{$this->field}` must be between {$this->additional}" : $errorMessage];
     }
 
     public function field(string $field){

@@ -2,8 +2,9 @@
 
 namespace Validation;
 
-class Required implements ValidationInterface
+class Min implements ValidationInterface
 {
+
     private array $formData;
 
     private array $errorMessage;
@@ -13,7 +14,7 @@ class Required implements ValidationInterface
     private string $additional;
 
     public function validate(){
-        if(empty($this->formData[$this->field])){
+        if(strlen($this->formData[$this->field]) < $this->additional){
             return $this->errorMessage;
         }
     }
@@ -23,7 +24,7 @@ class Required implements ValidationInterface
     }
 
     public function message(string $errorMessage){
-        $this->errorMessage = [$this->field => empty($errorMessage) ? "Field `{$this->field}` is required" : $errorMessage];
+        $this->errorMessage = [$this->field => empty($errorMessage) ? "The number of characters in the `{$this->field}` field must be greater than or equal to $this->additional characters" : $errorMessage];
     }
 
     public function field(string $field){

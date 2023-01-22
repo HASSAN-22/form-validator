@@ -72,22 +72,35 @@ If all validation passes, you get an empty array
 ```
     class Email implements \Validation\ValidationInterface{
     
-        private array $errorMessage;
+        private array $formData;
 
+        private array $errorMessage;
+    
         private string $field;
     
-        public function validate(array $data){
-            if(!filter_var($data, FILTER_VALIDATE_EMAIL)){
+        private string $additional;
+    
+        public function validate(){
+            if(!filter_var($this->formData[$this->field], FILTER_VALIDATE_EMAIL)){
                 return $this->errorMessage;
             }
         }
-    
+        
+         public function formData(array $formData){
+            $this->formData = $formData;
+        }
+        
         public function message(string $errorMessage){
             $this->errorMessage = [$this->field => empty($errorMessage) ? "The `{$this->field}` field is not an email" : $errorMessage];
         }
     
         public function field(string $field){
             $this->field = $field;
+        }
+        
+        public function additionalData(string $additional)
+        {
+            $this->additional = $additional;
         }
     } 
     
@@ -110,3 +123,15 @@ Output:
 [] 
 If all validation passes, you get an empty array
 ```
+
+### Available validations
+| Validtion |                                     Description                                      |
+|-----------|:------------------------------------------------------------------------------------:|
+| Required  | Checks that the field is not empty, these items are considered empty [ '', 0, null ] |
+| Between   |Checks if the field is between two values|
+| Email     |Checks if the field is email|
+| In        |Checks if the field has a series of values or not|
+| Max       |Checks the field must be less than or equal to a value|
+| Min       |Checks that the field must be greater than or equal to a value|
+| Numeric   |Checks that the field must be a number|
+| Str       |Checks that the field must be a string|

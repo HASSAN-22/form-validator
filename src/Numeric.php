@@ -4,6 +4,7 @@ namespace Validation;
 
 class Numeric implements ValidationInterface
 {
+    private array $formData;
 
     private array $errorMessage;
 
@@ -11,10 +12,14 @@ class Numeric implements ValidationInterface
 
     private string $additional;
 
-    public function validate(array $data){
-        if(!is_numeric($data[$this->field])){
+    public function validate(){
+        if(!is_numeric($this->formData[$this->field])){
             return $this->errorMessage;
         }
+    }
+
+    public function formData(array $formData){
+        $this->formData = $formData;
     }
 
     public function message(string $errorMessage){

@@ -2,7 +2,7 @@
 
 namespace Validation;
 
-class Required implements ValidationInterface
+class Str implements ValidationInterface
 {
     private array $formData;
 
@@ -13,9 +13,10 @@ class Required implements ValidationInterface
     private string $additional;
 
     public function validate(){
-        if(empty($this->formData[$this->field])){
+        if(!is_string($this->formData[$this->field])){
             return $this->errorMessage;
         }
+
     }
 
     public function formData(array $formData){
@@ -23,7 +24,7 @@ class Required implements ValidationInterface
     }
 
     public function message(string $errorMessage){
-        $this->errorMessage = [$this->field => empty($errorMessage) ? "Field `{$this->field}` is required" : $errorMessage];
+        $this->errorMessage = [$this->field => empty($errorMessage) ? "The field {$this->field} must be a string" : $errorMessage];
     }
 
     public function field(string $field){
