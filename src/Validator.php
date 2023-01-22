@@ -45,10 +45,11 @@ class Validator
      */
     private static function validated(ValidationInterface $validation, string $additionalData, string $field, string $rule, array $data): void
     {
+        $validation->formData($data);
         $validation->additionalData($additionalData);
         $validation->field($field);
         $validation->message($rule ?? '');
-        !is_null($validation->validate($data)) ? array_push(static::$errorMessages,$validation->validate($data)) : '';
+        !is_null($validation->validate()) ? array_push(static::$errorMessages,$validation->validate()) : '';
     }
 
     /**

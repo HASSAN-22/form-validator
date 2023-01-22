@@ -3,6 +3,7 @@
 namespace Validation;
 
 /**
+ * @property array $formData
  * @property array $errorMessage
  * @property string $field
  * @property string $additional
@@ -15,7 +16,14 @@ interface ValidationInterface
      * @param array $data
      * @return mixed
      */
-    public function validate(array $data);
+    public function validate();
+
+    /**
+     * Get form data
+     * @param array $formData
+     * @return mixed
+     */
+    public function formData(array $formData);
 
     /**
      * Get error manual message
