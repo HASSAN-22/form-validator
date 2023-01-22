@@ -125,13 +125,13 @@ If all validation passes, you get an empty array
 ```
 
 ### Available validations
-| Validtion |                                     Description                                      |
-|-----------|:------------------------------------------------------------------------------------:|
-| Required  | Checks that the field is not empty, these items are considered empty [ '', 0, null ] |
-| Between   |Checks if the field is between two values|
-| Email     |Checks if the field is email|
-| In        |Checks if the field has a series of values or not|
-| Max       |Checks the field must be less than or equal to a value|
-| Min       |Checks that the field must be greater than or equal to a value|
-| Numeric   |Checks that the field must be a number|
-| Str       |Checks that the field must be a string|
+| Validtion |                                     Description                                      |          Example          |
+|-----------|:------------------------------------------------------------------------------------|:-------------------------:|
+| Required  | Checks that the field is not empty, these items are considered empty [ '', 0, null ] |                           |
+| Between   |Checks if the field is between two values|       Between:4,10        |
+| Email     |Checks if the field is email||
+| In        |Checks if the field has a series of values or not| in:admin,customer,vendor  |
+| Max       |Checks the field must be less than or equal to a value|          Max:20           |                          |
+| Min       |Checks that the field must be greater than or equal to a value|           Min:7           |
+| Numeric   |Checks that the field must be a number||
+| Str       |Checks that the field must be a string||
