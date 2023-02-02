@@ -2,7 +2,7 @@
 
 namespace Validation;
 
-class Email implements \Validation\ValidationInterface{
+class Email implements ValidationInterface{
 
     private array $formData;
 
