@@ -142,7 +142,7 @@ The field under validation must match the given regular expression.
 $data = ['password'=>'123456','age'=>''];
 $result = \Validation\Validator::validate(
     [
-        'name'=>[
+        'password'=>[
             'rules'=>['Regex:/[1-6]/']
         ]
     ],$data);
