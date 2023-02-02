@@ -2,16 +2,18 @@
 
 ### install
 
-```
+```php
 composer require hasan-22/form-validator
 ```
 
+---
+
 ## usage
 
-```
+```php
 require_once __DIR__ . '/vendor/autoload.php';
 
-$data = ['name'=>'hassan','age'=>''];
+$data = ['name'=>'armia','age'=>''];
 $result = \Validation\Validator::validate(
     [
         'name'=>[
@@ -24,24 +26,26 @@ $result = \Validation\Validator::validate(
     
 print_r($result);
 
-Output: 
-[
-    [0] => [
-        [age] => The field `age` is required
-    ],
-    [1] => [
-        [age] => The field `age` must be numeric
-    ]
-]
+// Output: 
+// [
+//     [0] => [
+//         [age] => The field `age` is required
+//     ],
+//     [1] => [
+//         [age] => The field `age` must be numeric
+//     ]
+// ]
 
-If all validation passes, you get an empty array
+// If all validation passes, you get an empty array
 ```
+
+---
 
 ### with custom message
-```
+```php
 require_once __DIR__ . '/vendor/autoload.php';
 
-$data = ['name'=>'hassan','age'=>''];
+$data = ['name'=>'armia','age'=>''];
 $result = \Validation\Validator::validate(
     [
         'name'=>[
@@ -54,22 +58,25 @@ $result = \Validation\Validator::validate(
         ]
     ],$data);
     
-Output: 
-[
-    [0] => [
-        [age] => custom required msg
-    ],
-    [1] => [
-        [age] => custom numeric msg
-    ]
-]
+// Output: 
+// [
+//     [0] => [
+//         [age] => custom required msg
+//     ],
+//     [1] => [
+//         [age] => custom numeric msg
+//     ]
+// ]
 
 
-If all validation passes, you get an empty array
+// If all validation passes, you get an empty array
+ 
 ```
+
+---
 
 ### If you want to add custom validation, do so
-```
+```php
     class Email implements \Validation\ValidationInterface{
     
         private array $formData;
@@ -105,13 +112,16 @@ If all validation passes, you get an empty array
     } 
     
 ```
+
+---
+
 #### Now you can use the Email class like this
 
-```
+```php
 require_once __DIR__ . '/vendor/autoload.php';
 require_once 'Email.php';
 
-$formData = ['email'=>'hassan@gmail.com'];
+$formData = ['email'=>'armia@gmail.com'];
 $result = \Validation\Validator::validate(
     [
         'email'=>[
@@ -119,10 +129,26 @@ $result = \Validation\Validator::validate(
         ],
     ],$data);
 
-Output: 
-[] 
-If all validation passes, you get an empty array
+//Output: 
+//[] 
+//If all validation passes, you get an empty array
 ```
+
+---
+
+### Regex:pattern
+The field under validation must match the given regular expression.
+```php
+$data = ['password'=>'123456','age'=>''];
+$result = \Validation\Validator::validate(
+    [
+        'name'=>[
+            'rules'=>['Regex:/[1-6]/']
+        ]
+    ],$data);
+
+```
+---
 
 ### Available validations
 | Validtion |                                     Description                                      |         Example          |
@@ -135,3 +161,4 @@ If all validation passes, you get an empty array
 | Min       |Checks that the field must be greater than or equal to a value|          Min:7           |
 | Numeric   |Checks that the field must be a number||
 | Str       |Checks that the field must be a string||
+| Regex     |The field under validation must match the given regular expression|     Regex:/pattern/      |
